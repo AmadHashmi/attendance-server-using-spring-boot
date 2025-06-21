@@ -20,7 +20,8 @@ public class AuthController {
         UserDTO dbUser = authService.login(user);
 
         if(dbUser == null){
-            return new ResponseEntity<>("Wrong Credentials", HttpStatus.)
+            return new ResponseEntity<>("Wrong Credentials", HttpStatus.UNAUTHORIZED);
         }
+        return new ResponseEntity<>(dbUser, HttpStatus.OK);
     }
 }
