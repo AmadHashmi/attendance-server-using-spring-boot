@@ -2,10 +2,7 @@ package com.amdev.AttendenceServer.entities;
 
 import com.amdev.AttendenceServer.dto.UserDTO;
 import com.amdev.AttendenceServer.enums.UserRole;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +17,8 @@ public class User {
     private String password;
     private String name;
     private UserRole userRole;
-
+    @ManyToOne
+    private Project project;
 
     public UserDTO getDto(){
         UserDTO dto = new UserDTO();
@@ -30,6 +28,11 @@ public class User {
         dto.setUserRole(userRole);
         dto.setEmail(email);
 
+
+        if(project != null){
+            dto.setProjectId(project.getId());
+            dto.setProjectName(project.getName());
+        }
         return dto;
     }
 
