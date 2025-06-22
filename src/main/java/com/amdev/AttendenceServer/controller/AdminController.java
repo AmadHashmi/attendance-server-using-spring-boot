@@ -27,4 +27,14 @@ public class AdminController {
             return  new ResponseEntity<>("User not created, come again later", HttpStatus.NOT_ACCEPTABLE);
         }
     }
+
+
+    @GetMapping("/managers")
+    public ResponseEntity<?> getAllManagers(){
+        try {
+            return ResponseEntity.ok(adminService.getAllManagers());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 }
